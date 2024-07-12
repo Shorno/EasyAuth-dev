@@ -44,7 +44,9 @@ export default function Nav() {
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Button as={Link} color="primary" href="#" variant="flat">
+                            <Button as={Link} color="primary" href="/sign-up" variant="flat"
+                                    className={` ${currentPath === "/sign-up" ? "font-semibold text-blue-600 hover:text-blue-500" : "hover:text-gray-600"}   transition-colors duration-300 `}
+                            >
                                 Sign Up
                             </Button>
                         </NavbarItem>
