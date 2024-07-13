@@ -24,6 +24,12 @@ export default function Nav() {
             </NavbarBrand>
             <NavbarContent className="hidden sm:flex gap-4" justify="center">
                 <NavbarItem>
+                    <Link href={"/feed"} aria-current="page"
+                          className={` ${currentPath === "/feed" ? "font-semibold text-blue-600 hover:text-blue-500" : "hover:text-gray-600"}  transition-colors duration-300 `}>
+                        Feed
+                    </Link>
+                </NavbarItem>
+                <NavbarItem>
                     <Link href={"/dashboard"} aria-current="page"
                           className={` ${currentPath === "/dashboard" ? "font-semibold text-blue-600 hover:text-blue-500" : "hover:text-gray-600"}  transition-colors duration-300 `}>
                         Dashboard
