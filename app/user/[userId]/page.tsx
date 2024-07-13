@@ -35,20 +35,26 @@ export default async function ProfilePage() {
             {posts.map((post) => (
                 <Card className={"w-1/4 mx-auto mb-5"} key={post.id}>
                     <CardHeader className="flex justify-between gap-3">
-                       <div className={"flex gap-3"}>
-                           <Image
-                               alt="user avatar"
-                               height={40}
-                               radius="sm"
-                               src={user?.image || undefined}
-                               width={40}
-                           />
-                           <div className="flex flex-col">
-                               <p className="text-md">{user?.name}</p>
-                               <p className="text-small text-default-500">{post.createdAt.toDateString()}</p>
-                           </div>
-                       </div>
-                        <PostOptions/>
+                        <div className={"flex gap-3"}>
+                            <Image
+                                alt="user avatar"
+                                height={40}
+                                radius="sm"
+                                src={user?.image || undefined}
+                                width={40}
+                            />
+                            <div className="flex flex-col">
+                                <p className="text-md">{user?.name}</p>
+                                <p className="text-small text-default-500">{post.createdAt.toDateString()}</p>
+                            </div>
+                        </div>
+                        {/*<form action={async () => {*/}
+                        {/*    "use server"*/}
+                        {/*    await deletePost(post.id)*/}
+                        {/*}}>*/}
+                        {/*    <button className={"text-red-300"} type={"submit"}>Delete</button>*/}
+                        {/*</form>*/}
+                        <PostOptions postId={post?.id}/>
                     </CardHeader>
                     <Divider/>
                     <CardBody>

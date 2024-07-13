@@ -4,8 +4,9 @@ import {Button} from "@nextui-org/react";
 import {DeleteIcon} from "@/components/icons/delete-icon";
 import {EditIcon} from "@/components/icons/edit-icon";
 import {CopyIcon} from "@/components/icons/copy-icon";
+import {deletePost} from "@/actions/delete-post";
 
-export default function PostOptions() {
+export default function PostOptions({postId}: { postId: string }) {
     return (
         <>
             <Dropdown>
@@ -26,7 +27,12 @@ export default function PostOptions() {
                     <DropdownItem key="delete" className="text-danger" color="danger"
                                   startContent={<DeleteIcon/>}
                     >
-                        Delete post
+                        <form action={async () => {
+                            await deletePost(postId)
+                        }}>
+                            <button type={"submit"}>Delete post</button>
+                        </form>
+
                     </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
