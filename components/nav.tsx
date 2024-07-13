@@ -12,7 +12,6 @@ export default function Nav() {
     const loading = session.status === "loading";
 
     const currentPath = usePathname();
-    console.log(`Current Path: ${currentPath}`);
 
     return (
         <Navbar>

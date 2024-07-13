@@ -2,6 +2,7 @@ import {Card, CardBody, CardFooter, CardHeader, Divider, Image} from "@nextui-or
 import {auth} from "@/auth";
 import {Input} from "@nextui-org/input";
 import prisma from "@/prisma/db";
+import PostOptions from "@/components/dropdown-menu";
 
 export default async function ProfilePage() {
     const session = await auth();
@@ -33,18 +34,21 @@ export default async function ProfilePage() {
             </Card>
             {posts.map((post) => (
                 <Card className={"w-1/4 mx-auto mb-5"} key={post.id}>
-                    <CardHeader className="flex gap-3">
-                        <Image
-                            alt="user avatar"
-                            height={40}
-                            radius="sm"
-                            src={user?.image || undefined}
-                            width={40}
-                        />
-                        <div className="flex flex-col">
-                            <p className="text-md">{user?.name}</p>
-                            <p className="text-small text-default-500">{post.createdAt.toDateString()}</p>
-                        </div>
+                    <CardHeader className="flex justify-between gap-3">
+                       <div className={"flex gap-3"}>
+                           <Image
+                               alt="user avatar"
+                               height={40}
+                               radius="sm"
+                               src={user?.image || undefined}
+                               width={40}
+                           />
+                           <div className="flex flex-col">
+                               <p className="text-md">{user?.name}</p>
+                               <p className="text-small text-default-500">{post.createdAt.toDateString()}</p>
+                           </div>
+                       </div>
+                        <PostOptions/>
                     </CardHeader>
                     <Divider/>
                     <CardBody>
