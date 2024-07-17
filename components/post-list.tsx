@@ -2,11 +2,12 @@ import {Card, CardBody, CardFooter, CardHeader, Divider, Image} from "@nextui-or
 import prisma from "@/prisma/db";
 import {auth} from "@/auth";
 import {Input} from "@nextui-org/input";
+import PostOptions from "@/components/dropdown-menu";
 
 export default async function PostList() {
 
     const session = await auth();
-    const user = session?.user;
+    const currentUserId = session?.user?.id;
 
     const posts = await prisma.post.findMany({
         include: {
@@ -18,18 +19,22 @@ export default async function PostList() {
         <>
             {posts.map((post) => (
                 <Card className={"max-w-xl mx-auto mb-5"} key={post.id}>
-                    <CardHeader className="flex gap-3">
-                        <Image
-                            alt="user avatar"
-                            height={40}
-                            radius="sm"
-                            src={post.user.image || undefined}
-                            width={40}
-                        />
-                        <div className="flex flex-col">
-                            <p className="text-md">{post.user.name}</p>
-                            <p className="text-small text-default-500">{post.createdAt.toDateString()}</p>
+                    <CardHeader className="flex gap-3 justify-between">
+                        <div className={"flex gap-3"}>
+                            <Image
+                                alt="user avatar"
+                                height={40}
+                                radius="sm"
+                                src={post.user.image || undefined}
+                                width={40}
+                            />
+                            <div className="flex flex-col">
+                                <p className="text-md">{post.user.name}</p>
+                                <p className="text-small text-default-500">{post.createdAt.toDateString()}</p>
+                            </div>
                         </div>
+
+                        <PostOptions postId={post.id} currentUserId={currentUserId!} postUserId={post.user.id}/>
                     </CardHeader>
                     <Divider/>
                     <CardBody>
